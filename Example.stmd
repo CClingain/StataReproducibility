@@ -1,10 +1,10 @@
 * Load in the data
-use “”, clear
+use “http://www.stata-press.com/data/r14/nhanes2d.dta”, clear
 codebook 
 * Create a local variable of demographics
-local demogvars = race gender
+local demogvars race sex age
 * Get summary stats in a loop
-foreach myvar in varlist `demogvars’ {
-tabstat `myvar’, stats(n mean sd min max)
+foreach `myvar' of varlist `demogvars' {
+summ `myvar'
 }
 
