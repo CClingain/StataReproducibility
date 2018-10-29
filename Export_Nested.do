@@ -14,8 +14,8 @@ foreach counter of numlist 1/2{                                                 
 	if `counter' == 1 {                                                         // if counter is set to 1
 	regress `myreg1'                                                            // run the first regression
 	mat temp = r(table)'                                                        // Save results temporarily in a matrix
-	mat bweights = temp[1...,1.."se"]                                           // Extract the b-weights and standard errors
-	mat pvalues = temp[1...,"pvalue"]                                           // Extract the p-values
+	mat bweights = temp[1,1.."se"]                                              // Extract the b-weights and standard errors
+	mat pvalues = temp[1,"pvalue"]                                              // Extract the p-values
 	mat emptyrow = J(1,3,.)                                                     // Create an empty row that will take the place of the variable we are adding to the second equation (so our matrices are comformable)
 	mat final`counter' = (bweights , pvalues) \ emptyrow                        // Combine all matrices for counter = 1
 	}
@@ -23,8 +23,8 @@ foreach counter of numlist 1/2{                                                 
 	if `counter' == 2 {                                                         // if counter is set to 2
 	regress `myreg2'                                                            // run the second regression
 	mat temp = r(table)'                                                        // Save results temporarily in a matrix
-	mat bweights = temp[1...,1.."se"]                                           // Extract the b-weights and standard errors
-	mat pvalues = temp[1...,"pvalue"]                                           // Extract the p-values
+	mat bweights = temp[1..2,1.."se"]                                           // Extract the b-weights and standard errors
+	mat pvalues = temp[1..2,"pvalue"]                                           // Extract the p-values
 	mat final`counter' = bweights , pvalues                                     // Combine all matrices for counter = 2
 	}
 
@@ -36,5 +36,5 @@ mat list final                                                                  
 
 * Export to Excel 
 putexcel set "Export_Tables.xlsx", sheet("Regression Shell Table 2") modify
-putexcel B3  = matrix(final)
+putexcel B4  = matrix(final)
 putexcel A30 = ("$S_TIME $S_DATE")
