@@ -19,5 +19,5 @@ est store model3
 * Make the table
 estout model1 model2 model3, cells(b(star fmt(3)) se(par fmt(2))) ///
   legend label varlabels(_cons constant) ///
-  stats(r2 df_r, fmt(3 0) label(R-sqr df_res))
+  stats(r2 df_r, fmt(3 0) label(R-square df_residual))
 
