@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{geometry}
+%\setlength{\voffset}{-0.75in}
+%\setlength{\headsep}{5pt}
+\title{Stata Reproducibility Assignment}
+\author{Clare Clingain}
+\date{November 14, 2018}
+\begin{document}
+
+\maketitle
+
+The goal of this assignment is to create an entirely reproducible research process. Your results should be replicable by anyone who receives your do-file(s) and documentation. For questions about this assignment, please reach out to Clare at {\color{blue}clc586@nyu.edu}
+
+\section{Scenario}
+Imagine that you have been approached by the Center for Disease Control (CDC) to run statistical analyses on the National Health and Nutrition Examination Survey II (NHANES II), and to compile a report of your findings in table format. The CDC requests that the research process be reproducible so that other researchers can replicate your results and any critics about table results can be more easily shut down. 
+
+\section{Data}
+You will use data from the Center for Disease Control's National Health and Nutrition Examination Survey II (NHANES II) for this assignment. The dataset can be loaded into Stata using the following code: \textit{use "http://www.stata-press.com/data/r14/nhanes2.dta", clear}. For the purposes of this assignment, \textbf{you are not required to use the survey weights}. Note that if you do choose to use the survey weights, you will need to use Stata's \textit{svy, subpop():} commands to run statistical analyses. 
+
+\section{Tasks}
+\textbf{ You must complete the following tasks:}
+
+\begin{enumerate}
+\item Subset your data based on one demographic feature (eg. gender, race, region, etc.) 
+\item Create and/or recode 3 variables
+\item Run one descriptive analysis of at least 4 variables
+\item Export a descriptive table (via estout, putexcel, texdoc -- your choice)
+\item Run two predictive analyses: either a nested regression or two models with same predictors, different outcomes
+\item Create reproducible code that will run your regressions and export the results into a table shell using putexcel
+\end{enumerate}
+
+
+\section{Submission}
+
+Please submit the following documents via NYU Classes:
+\begin{enumerate}
+\item A \textbf{clean and readable} do-file containing all your code
+\item A 1-2 page PDF write-up of your research process containing your final tables
+\item An Excel file with your table shell
+\end{enumerate}
+
+
+
+\end{document}
