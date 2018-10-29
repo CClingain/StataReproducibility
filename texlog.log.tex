@@ -1,0 +1,75 @@
+. regress bwt smoke 
+{\smallskip}
+      Source {\VBAR}       SS           df       MS      Number of obs   =       189
+\HLI{13}{\PLUS}\HLI{34}   F(1, 187)       =      6.98
+       Model {\VBAR}  3597444.33         1  3597444.33   Prob > F        =    0.0089
+    Residual {\VBAR}  96317854.2       187  515068.739   R-squared       =    0.0360
+\HLI{13}{\PLUS}\HLI{34}   Adj R-squared   =    0.0308
+       Total {\VBAR}  99915298.6       188  531464.354   Root MSE        =    717.68
+{\smallskip}
+\HLI{13}{\TOPT}\HLI{64}
+         bwt {\VBAR}      Coef.   Std. Err.      t    P>|t|     [95\% Conf. Interval]
+\HLI{13}{\PLUS}\HLI{64}
+       smoke {\VBAR}  -282.6592   106.9544    -2.64   0.009    -493.6515   -71.66693
+       _cons {\VBAR}   3054.957   66.92428    45.65   0.000     2922.933     3186.98
+\HLI{13}{\BOTT}\HLI{64}
+{\smallskip}
+. est store model1
+{\smallskip}
+. mat temp = r(table)'
+{\smallskip}
+. mat bweights = temp[1...,1.."se"]
+{\smallskip}
+. mat pvalues = temp[1...,"pvalue"]
+{\smallskip}
+. mat final = bweights , pvalues
+{\smallskip}
+. mat li final
+{\smallskip}
+final[2,3]
+                b          se      pvalue
+smoke  -282.65922   106.95442   .00891953
+_cons   3054.9565   66.924275   2.51e-103
+{\smallskip}
+. 
+. regress bwt smoke ht
+{\smallskip}
+      Source {\VBAR}       SS           df       MS      Number of obs   =       189
+\HLI{13}{\PLUS}\HLI{34}   F(2, 186)       =      5.58
+       Model {\VBAR}  5652412.36         2  2826206.18   Prob > F        =    0.0044
+    Residual {\VBAR}  94262886.2       186  506789.711   R-squared       =    0.0566
+\HLI{13}{\PLUS}\HLI{34}   Adj R-squared   =    0.0464
+       Total {\VBAR}  99915298.6       188  531464.354   Root MSE        =    711.89
+{\smallskip}
+\HLI{13}{\TOPT}\HLI{64}
+         bwt {\VBAR}      Coef.   Std. Err.      t    P>|t|     [95\% Conf. Interval]
+\HLI{13}{\PLUS}\HLI{64}
+       smoke {\VBAR}  -279.7948   106.1009    -2.64   0.009    -489.1106   -70.47892
+          ht {\VBAR}  -427.6566   212.3766    -2.01   0.045    -846.6331   -8.680141
+       _cons {\VBAR}   3080.988   67.63122    45.56   0.000     2947.565    3214.411
+\HLI{13}{\BOTT}\HLI{64}
+{\smallskip}
+. est store model2
+{\smallskip}
+. 
+. estout model1 model2, cells(b(star fmt(3)) se(par fmt(2))) ///
+>   legend label varlabels(_cons constant) ///
+>   stats(r2 df_r, fmt(3 0) label(R-square df_residual))
+{\smallskip}
+\HLI{52}
+                           model1          model2   
+                             b/se            b/se   
+\HLI{52}
+smoked during preg{\tytilde}y     -282.659**      -279.795** 
+                         (106.95)        (106.10)   
+has history of hyp{\tytilde}n                     -427.657*  
+                                         (212.38)   
+constant                 3054.957***     3080.988***
+                          (66.92)         (67.63)   
+\HLI{52}
+R-square                    0.036           0.057   
+df_residual                   187             186   
+\HLI{52}
+* p<0.05, ** p<0.01, *** p<0.001
+{\smallskip}
+.   
