@@ -1,4 +1,4 @@
-. regress bwt smoke 
+. regress bwt smoke                                                               // Run regression 1
 {\smallskip}
       Source {\VBAR}       SS           df       MS      Number of obs   =       189
 \HLI{13}{\PLUS}\HLI{34}   F(1, 187)       =      6.98
@@ -14,17 +14,21 @@
        _cons {\VBAR}   3054.957   66.92428    45.65   0.000     2922.933     3186.98
 \HLI{13}{\BOTT}\HLI{64}
 {\smallskip}
-. est store model1
+. est store model1                                                                // Store results
 {\smallskip}
-. mat temp = r(table)'
+. mat temp = r(table)'                                                            // Save results tem
+> porarily in a matrix
 {\smallskip}
-. mat bweights = temp[1...,1.."se"]
+. mat bweights = temp[1...,1.."se"]                                               // Extract b-weight
+> s and standard errors
 {\smallskip}
-. mat pvalues = temp[1...,"pvalue"]
+. mat pvalues = temp[1...,"pvalue"]                                               // Extract p-values
 {\smallskip}
-. mat final = bweights , pvalues
+. mat final = bweights , pvalues                                                  // Combine b-weight
+> s and p-values into one matrix
 {\smallskip}
-. mat li final
+. mat li final                                                                    // Display final ma
+> trix
 {\smallskip}
 final[2,3]
                 b          se      pvalue
@@ -32,7 +36,7 @@ smoke  -282.65922   106.95442   .00891953
 _cons   3054.9565   66.924275   2.51e-103
 {\smallskip}
 . 
-. regress bwt smoke ht
+. regress bwt smoke ht                                                            // Run regression 2
 {\smallskip}
       Source {\VBAR}       SS           df       MS      Number of obs   =       189
 \HLI{13}{\PLUS}\HLI{34}   F(2, 186)       =      5.58
@@ -49,7 +53,7 @@ _cons   3054.9565   66.924275   2.51e-103
        _cons {\VBAR}   3080.988   67.63122    45.56   0.000     2947.565    3214.411
 \HLI{13}{\BOTT}\HLI{64}
 {\smallskip}
-. est store model2
+. est store model2                                                                // Store results
 {\smallskip}
 . 
 . estout model1 model2, cells(b(star fmt(3)) se(par fmt(2))) ///

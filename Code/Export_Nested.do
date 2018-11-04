@@ -35,6 +35,6 @@ foreach counter of numlist 1/2{                                                 
 mat list final                                                                  // View the results
 
 * Export to Excel 
-putexcel set "Export_Tables.xlsx", sheet("Regression Shell Table 2") modify
+putexcel set "Output/Export_Tables.xlsx", sheet("Regression Shell Table 2") modify
 putexcel B4  = matrix(final)
 putexcel A30 = ("$S_TIME $S_DATE")

@@ -13,7 +13,7 @@ mat pvalues = temp[1...,"pvalue"]
 mat final = bweights , pvalues
 
 * Export
-putexcel set "Export_Tables.xlsx", sheet("Regression Shell Table 1") modify
+putexcel set "Output/Export_Tables.xlsx", sheet("Regression Shell Table 1") modify
 putexcel B3  = matrix(final)
 putexcel A30 = ("$S_TIME $S_DATE")
 

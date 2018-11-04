@@ -3,7 +3,7 @@
 ******************************
 
 * Set working directory
-cd "C:/Users/Clare/Documents/StataRepro/StataReproducibility"
+cd "C:/Users/Clare/Documents/StataRepro/StataReproducibility/Output"
 * Load the data
 use "http://www.stata-press.com/data/r14/lbw.dta", clear
 
